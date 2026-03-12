@@ -1,0 +1,24 @@
+# Compiled binaries
+*.exe
+*.out
+*.app
+*.o
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# Compiled examples from ez-cpp
+demo
+app
+
+# Build folders
+build/
+bin/
+out/
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
