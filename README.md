@@ -49,6 +49,7 @@ int main() {
 - **Safe Type Conversion:** `ez::input<int>()` forces the user to input an integer. If they type text, it gracefully asks again without crashing or leaking memory.
 - **Zero-Bloat Colors:** Built-in ANSI colors (`ez::color::cyan`, etc.) using `std::string_view` for zero allocation cost.
 - **Header-Only:** Drop the folder into your project and you're done. No CMake hell, no linker errors.
+- **Human-Friendly Math:** Zero-bloat, type-agnostic math utilities (`random`, `clamp`, `map`, `percent`) with built-in panic prevention.
 
 ---
 
@@ -59,7 +60,7 @@ int main() {
 Since **ez-cpp** is a header-only library, there is no build step.
 Simply copy the **include/ez** folder into your project's include path or **third_party** directory.
 
-**2. Usage**
+**2. I/O Usage**
 
 ```cpp
 #include "ez/ez.hpp"
@@ -89,6 +90,23 @@ int main() {
 }
 ```
 
+**3. Math Usage**
+
+```cpp
+#include "ez/ez.hpp"
+
+int main() {
+    // Generate a random float between 0.0 and 100.0 without boilerplate RNG setup
+    float drop_rate = ez::math::random(0.0f, 100.0f);
+    
+    // Clamp a value safely
+    int hp = ez::math::clamp(150, 0, 100); // returns 100
+    
+    ez::println("Drop rate: ", drop_rate, "% | HP: ", hp);
+    return 0;
+}
+```
+
 ---
 
 ## ez-cpp API
@@ -102,6 +120,13 @@ int main() {
 
 - `ez::input(prompt)`: Returns a `std::string` safely.
 - `ez::input<T>(prompt)`: Prompts the user until a valid type `T` (e.g., `int`, `double`) is provided.
+
+**Math**
+
+- `ez::math::random<T>(min, max)`: Generates a random number (auto-detects int/float) using a fast, zero-bloat thread-local RNG.
+- `ez::math::clamp(value, min, max)`: Returns a value restricted within the `[min, max]` range. Automatically swaps `min` and `max` if inverted.
+- `ez::math::map(value, in_min, in_max, out_min, out_max)`: Re-maps a number from one range to another with division-by-zero protection.
+- `ez::math::percent(percentage, total)`: Safely calculates the percentage of a total value.
 
 **Styling**
 
