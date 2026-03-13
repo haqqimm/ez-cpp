@@ -10,7 +10,8 @@
 *.dylib
 
 # Compiled examples from ez-cpp
-demo
+demo_io
+demo_math
 app
 
 # Build folders
