@@ -12,6 +12,7 @@
 # Compiled examples from ez-cpp
 demo_io
 demo_math
+demo_str
 app
 
 # Build folders

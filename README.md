@@ -50,6 +50,7 @@ int main() {
 - **Zero-Bloat Colors:** Built-in ANSI colors (`ez::color::cyan`, etc.) using `std::string_view` for zero allocation cost.
 - **Header-Only:** Drop the folder into your project and you're done. No CMake hell, no linker errors.
 - **Human-Friendly Math:** Zero-bloat, type-agnostic math utilities (`random`, `clamp`, `map`, `percent`) with built-in panic prevention.
+- **String Manipulation:** High-level string utilities (`split`, `join`, `trim`) built with `std::string_view` for zero-copy performance and anti-loop safety.
 
 ---
 
@@ -107,6 +108,29 @@ int main() {
 }
 ```
 
+**4. String Usage**
+
+```cpp
+#include "ez/ez.hpp"
+#include <string>
+
+int main() {
+    std::string data = "apple,banana,mango";
+    
+    // Split safely into a vector
+    auto fruits = ez::str::split(data, ",");
+    
+    // Join back with a different delimiter
+    std::string joined = ez::str::join(fruits, " | ");
+    
+    ez::println("Original: ", data);
+    ez::println("Vector  : ", fruits); // Auto-prints container!
+    ez::println("Joined  : ", joined);
+    
+    return 0;
+}
+```
+
 ---
 
 ## ez-cpp API
@@ -127,6 +151,15 @@ int main() {
 - `ez::math::clamp(value, min, max)`: Returns a value restricted within the `[min, max]` range. Automatically swaps `min` and `max` if inverted.
 - `ez::math::map(value, in_min, in_max, out_min, out_max)`: Re-maps a number from one range to another with division-by-zero protection.
 - `ez::math::percent(percentage, total)`: Safely calculates the percentage of a total value.
+
+**String**
+
+- `ez::str::to_lower(str) / ez::str::to_upper(str)`: Converts string case safely without undefined behavior.
+- `ez::str::trim(str)`: Removes leading and trailing whitespaces.
+- `ez::str::split(str, delimiter)`: Splits a string into a `std::vector<std::string>`.
+- `ez::str::join(container, delimiter)`: Joins any iterable container into a single string.
+- `ez::str::replace_all(str, search, replacement)`: Safely replaces all occurrences of a substring.
+- `ez::str::contains(str, search)`: Returns `true` if the substring exists.
 
 **Styling**
 

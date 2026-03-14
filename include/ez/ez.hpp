@@ -8,9 +8,12 @@
 
 #include "io.hpp"
 #include "math.hpp"
+#include "str.hpp"
 
 /**
  * Project: ez-cpp
  * Author: haqqimm
+ * Github: https://github.com/haqqimm/ez-cpp
+ * Codeberg: https://codeberg.org/haqqi-dev/ez-cpp
  * Standard: C++17 or higher
 */
